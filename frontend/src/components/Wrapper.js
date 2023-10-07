@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import Header from "./Header";
-import bg from "./../img/backgroundImage.jpg";
+import bg from "./../assets/backgroundImage.jpg";
 
 const Wrapper = () => {
   return (

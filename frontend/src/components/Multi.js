@@ -8,6 +8,7 @@ const Multi = () => {
   const handleSubmit = async (e) => {
     let formData = new FormData();
     formData.append("data", selectedFile);
+    console.log(formData);
     const response = await instance.post("/upload", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
