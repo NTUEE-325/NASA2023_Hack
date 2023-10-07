@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
 import Explore from "./components/Explore";
+import Multi from "./components/Multi";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Route path="/" element={<Wrapper />}>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/multi" element={<Multi />} />
         </Route>
       </Routes>
     </BrowserRouter>
