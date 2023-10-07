@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import instance from "./api";
-import { Typography, Box, Tabs, Tab, hexToRgb } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 const Multi = () => {
   const [selectedFile, setSelectedFile] = useState(null);

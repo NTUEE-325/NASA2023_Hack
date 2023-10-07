@@ -10,11 +10,11 @@ const Header = () => {
   const handleClick = (event, newValue) => {
     console.log(newValue);
     setValue(newValue);
-    if (newValue == "0") {
+    if (newValue === "0") {
       navigate("/");
-    } else if (newValue == "1") {
+    } else if (newValue === "1") {
       navigate("/explore");
-    } else if (newValue == "2") {
+    } else if (newValue === "2") {
       navigate("/multi");
     } else {
       navigate("/custom");
@@ -34,6 +34,7 @@ const Header = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        zIndex: 10,
       }}
     >
       <Tabs
@@ -49,7 +50,7 @@ const Header = () => {
         <Tab label="01 Home" value="0" />
         <Tab label="02 Fly through" value="1" />
         <Tab label="03 Multi-channel" value="2" />
-        <Tab label="04 Custom" value="2" />
+        <Tab label="04 Custom" value="3" />
       </Tabs>
     </div>
   );
