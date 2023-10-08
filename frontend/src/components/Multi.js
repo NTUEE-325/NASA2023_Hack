@@ -89,6 +89,7 @@ const Multi = () => {
   ];
 
   const [page, setPage] = useState(0);
+  const [disable, setDisable] = useState(false);
   const [items, setItems] = useState([
     { name: "wavelength: 3.4um", checked: true },
     { name: "wavelength: 4.6um", checked: false },
@@ -191,9 +192,14 @@ const Multi = () => {
     // playNote(piano, "B3", 0.25, 0, now);
 
     // Tone.start();
+
     Tone.Transport.start();
     Tone.Transport.stop(now + 10);
     animate();
+    setDisable(true);
+    setInterval(() => {
+      setDisable(false);
+    }, 10000);
   };
 
   const drawLine = (ctx, y_min, y_max, x) => {
@@ -457,6 +463,7 @@ const Multi = () => {
                   control={<Checkbox />}
                   label={item.name}
                   checked={item.checked}
+                  disabled={disable}
                   onChange={() => {
                     handleChange(items.indexOf(item));
                   }}
@@ -492,6 +499,7 @@ const Multi = () => {
                 </Typography>
                 <Button
                   variant="outlined"
+                  disabled={disable}
                   onClick={() => {
                     playTest();
                   }}
