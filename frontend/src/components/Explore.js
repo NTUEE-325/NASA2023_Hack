@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from "react";
+import React, { useRef, useEffect, useContext, useState } from "react";
 import InstrumentContext from "./useInstruments";
 import { Button } from "@mui/material";
 import test_video from "./../assets/01.mp4";
@@ -14,6 +14,7 @@ let nextSoundMs;
 const Explore = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const [isplayed, setIsPlayed] = useState(false);
   const { piano, bassoon, clarinet, contrabass } =
     useContext(InstrumentContext);
   let reqID = null;
@@ -278,7 +279,9 @@ const Explore = () => {
       </video>
       <Button
         variant="outlined"
+        
         onClick={() => {
+          setIsPlayed(true);
           capture();
         }}
         sx={{
@@ -287,6 +290,8 @@ const Explore = () => {
           width: "20vw",
           left: "40vw",
           right: "40vw",
+          zIndex:2,
+          display:isplayed ? "none" : "",
         }}
       >
         Start Sonification!
