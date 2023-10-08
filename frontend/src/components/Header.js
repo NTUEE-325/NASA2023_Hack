@@ -17,8 +17,6 @@ const Header = () => {
       navigate("/explore");
     } else if (newValue === "2") {
       navigate("/multi");
-    } else {
-      navigate("/custom");
     }
   };
 
@@ -29,8 +27,6 @@ const Header = () => {
       setValue("1");
     } else if (location.pathname === "/multi") {
       setValue("2");
-    } else {
-      setValue("3");
     }
   }, []);
 
@@ -63,7 +59,6 @@ const Header = () => {
         <Tab label="01 Home" value="0" />
         <Tab label="02 Fly through" value="1" />
         <Tab label="03 Multi-channel" value="2" />
-        <Tab label="04 Custom" value="3" />
       </Tabs>
     </div>
   );

@@ -446,17 +446,17 @@ const Multi = () => {
   return (
     <Grid
       container
-      sx={{ paddingTop: "18vh", marginLeft: "4vw", marginRight: "4vw" }}
+      sx={{ paddingTop: "18vh", paddingLeft: "4vw", paddingRight: "4vw" }}
     >
-      <Grid item xs={5}>
+      <Grid item xs={6}>
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: "rgba(220,220,220,0.2)",
-            marginLeft: "10vw",
-            marginRight: "10vw",
+            marginLeft: "4vw",
+            marginRight: "4vw",
             paddingLeft: "1vw",
             paddingRight: "1vw",
             paddingTop: "1vh",
@@ -540,10 +540,8 @@ const Multi = () => {
       </Grid>
       <Grid
         item
-        xs={7}
+        xs={6}
         sx={{
-          paddingLeft: "5vw",
-          paddingRight: "5vw",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

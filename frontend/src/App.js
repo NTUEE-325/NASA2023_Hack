@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import Explore from "./components/Explore";
 import Multi from "./components/Multi";
 import theme from "./components/theme";
-import Custom from "./components/Custom";
 import { ThemeProvider } from "@emotion/react";
 import InstrumentContext from "./components/useInstruments";
 import {
@@ -53,7 +52,6 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/multi" element={<Multi />} />
-              <Route path="/custom" element={<Custom />} />
             </Route>
           </Routes>
         </InstrumentContext.Provider>
