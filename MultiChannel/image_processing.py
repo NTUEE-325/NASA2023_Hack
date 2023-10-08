@@ -21,25 +21,25 @@ if __name__ == "__main__":
 
     ### 1st type
 
-    # piano_mapping = [   "D1", "F#1", "G1", "B1",
-    #                     "D2", "F#2", "G2", "B2",
-    #                     "D3", "F#3", "G3", "B3",
-    #                     "D4", "F#4", "G4", "B4",
-    #                     "D5", "F#5", "G5", "B5",
-    #                     "D6", "F#6", "G6", "B6",
-    #                     "D7", "F#7", "G7", "B7"]
+    piano_mapping = [   "D1", "F#1", "G1", "B1",
+                        "D2", "F#2", "G2", "B2",
+                        "D3", "F#3", "G3", "B3",
+                        "D4", "F#4", "G4", "B4",
+                        "D5", "F#5", "G5", "B5",
+                        "D6", "F#6", "G6", "B6",
+                        "D7", "F#7", "G7", "B7"]
 
-    # basson_mapping = [  "D3", "F#3", "G3", "B3",
-    #                     "D4", "F#4", "G4"]
+    basson_mapping = [  "D3", "F#3", "G3", "B3",
+                        "D4", "F#4", "G4"]
 
-    # clarinet_mapping=[  "D3", "F#3", "G3", "B3",
-    #                     "D4", "F#4", "G4", "B4",
-    #                     "D5", "F#5", "G5", "B5",
-    #                     "D6", "F#6"]
+    clarinet_mapping=[  "D3", "F#3", "G3", "B3",
+                        "D4", "F#4", "G4", "B4",
+                        "D5", "F#5", "G5", "B5",
+                        "D6", "F#6"]
 
-    # contrabass_mapping=["F#1", "G1", "B1",
-    #                     "D2", "F#2", "G2", "B2",
-    #                     "D3", "F#3", "G3", "G#3"]
+    contrabass_mapping=["F#1", "G1", "B1",
+                        "D2", "F#2", "G2", "B2",
+                        "D3", "F#3", "G3", "G#3"]
 
     ### 2nd type 
 
@@ -65,25 +65,25 @@ if __name__ == "__main__":
 
     ### 3rd type
 
-    piano_mapping = [   "C1", "D#1", "F1", "A1", 
-                        "C2", "D#2", "F2", "A2", 
-                        "C3", "D#3", "F3", "A3", 
-                        "C4", "D#4", "F4", "A4", 
-                        "C5", "D#5", "F5", "A5", 
-                        "C6", "D#6", "F6", "A6", 
-                        "C7", "D#7", "F7", "A7"]
+    # piano_mapping = [   "C1", "D#1", "F1", "A1", 
+    #                     "C2", "D#2", "F2", "A2", 
+    #                     "C3", "D#3", "F3", "A3", 
+    #                     "C4", "D#4", "F4", "A4", 
+    #                     "C5", "D#5", "F5", "A5", 
+    #                     "C6", "D#6", "F6", "A6", 
+    #                     "C7", "D#7", "F7", "A7"]
 
-    basson_mapping = [  "D#3", "F3", "A3",
-                        "C4", "D#4", "F4", "A4"]
+    # basson_mapping = [  "D#3", "F3", "A3",
+    #                     "C4", "D#4", "F4", "A4"]
 
-    clarinet_mapping=[  "D#3", "F3", "A3", 
-                        "C4", "D#4", "F4", "A4", 
-                        "C5", "D#5", "F5", "A5", 
-                        "C6", "D#6", "F6"]
+    # clarinet_mapping=[  "D#3", "F3", "A3", 
+    #                     "C4", "D#4", "F4", "A4", 
+    #                     "C5", "D#5", "F5", "A5", 
+    #                     "C6", "D#6", "F6"]
 
-    contrabass_mapping=["A1",
-                        "C2", "D#2", "F2", "A2", 
-                        "C3", "D#3", "F3"]
+    # contrabass_mapping=["A1",
+    #                     "C2", "D#2", "F2", "A2", 
+    #                     "C3", "D#3", "F3"]
 
     ### 4th type
 
@@ -136,8 +136,8 @@ if __name__ == "__main__":
     files = ['w1.fits', 'w2.fits', 'w3.fits', 'w4.fits']
 
     # os.remove(os.path.join(data_path, 'melody.js'))
-    file_path = '../frontend/src/constant/melody.js'
-    os.remove(file_path)
+    file_path = '../frontend/src/constant/melody3.js'
+    # os.remove(file_path)
 
     for j, file in enumerate(files):
         image_data = fits.open(os.path.join(data_path, file))[0].data
@@ -195,7 +195,7 @@ if __name__ == "__main__":
         # file_path = os.path.join(data_path, 'melody.js')
 
         with open(file_path, 'a') as f:
-            f.write(f"export const {name[j]} = ")
+            f.write(f"export const {name[j]}_3 = ")
         with open(file_path, 'a') as f:
             json.dump(arr, f, indent=2)
             f.write('\n')     

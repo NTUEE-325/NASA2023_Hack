@@ -14,11 +14,23 @@ import * as Tone from "tone";
 // import useInstruments from "./useInstruments";
 import InstrumentContext from "./useInstruments";
 import {
-  piano_note,
-  basson_note,
-  clarinet_note,
-  contrabass_note,
-} from "../constant/melody";
+  piano_note_1,
+  basson_note_1,
+  clarinet_note_1,
+  contrabass_note_1,
+} from "../constant/melody1";
+import {
+  piano_note_2,
+  basson_note_2,
+  clarinet_note_2,
+  contrabass_note_2,
+} from "../constant/melody2";
+import {
+  piano_note_3,
+  basson_note_3,
+  clarinet_note_3,
+  contrabass_note_3,
+} from "../constant/melody3";
 
 /* File generated automatically by python. */
 import pic_1_0000 from "./../assets/image1/1_0000.jpg";
@@ -192,6 +204,24 @@ const Multi = () => {
     // playNote(piano, "B3", 0.25, 0, now);
 
     // Tone.start();
+    
+    let piano_note, basson_note, clarinet_note, contrabass_note;
+    if (page===0){
+      piano_note = piano_note_1;
+      basson_note = basson_note_1;
+      clarinet_note = clarinet_note_1;
+      contrabass_note = contrabass_note_1; 
+    } else if (page===1){
+      piano_note = piano_note_2;
+      basson_note = basson_note_2;
+      clarinet_note = clarinet_note_2;
+      contrabass_note = contrabass_note_2; 
+    } else {
+      piano_note = piano_note_3;
+      basson_note = basson_note_3;
+      clarinet_note = clarinet_note_3;
+      contrabass_note = contrabass_note_3; 
+    }
 
     let result = items.map((a) => a.checked);
 
