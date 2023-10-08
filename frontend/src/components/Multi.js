@@ -208,8 +208,8 @@ const Multi = () => {
         });
       });
     }
-    
-    if (result[1]){
+
+    if (result[1]) {
       Tone.Transport.scheduleOnce((time) => {
         basson_note.forEach((n) => {
           bassoon.triggerAttackRelease(
@@ -220,10 +220,10 @@ const Multi = () => {
           );
           // console.log(n);
         });
-      });  
+      });
     }
 
-    if (result[2]){
+    if (result[2]) {
       Tone.Transport.scheduleOnce((time) => {
         clarinet_note.forEach((n) => {
           clarinet.triggerAttackRelease(
@@ -236,8 +236,8 @@ const Multi = () => {
         });
       });
     }
-    
-    if (result[3]){
+
+    if (result[3]) {
       Tone.Transport.scheduleOnce((time) => {
         contrabass_note.forEach((n) => {
           contrabass.triggerAttackRelease(
@@ -250,11 +250,11 @@ const Multi = () => {
         });
       });
     }
-  
-    console.log(result)
+
+    console.log(result);
 
     // Tone.start();
-    if (result[0] | result[1] | result[2] | result[3]){
+    if (result[0] | result[1] | result[2] | result[3]) {
       Tone.Transport.start();
     }
 
@@ -562,6 +562,7 @@ const Multi = () => {
               onClick={() => {
                 decrPage();
               }}
+              disabled={page === 0}
             >
               <ArrowBackIosNewIcon />
             </Button>
@@ -595,6 +596,7 @@ const Multi = () => {
               onClick={() => {
                 incrPage();
               }}
+              disabled={page === 2}
             >
               <ArrowForwardIosIcon />
             </Button>
