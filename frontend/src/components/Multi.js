@@ -589,7 +589,7 @@ const Multi = () => {
               onClick={() => {
                 decrPage();
               }}
-              disabled={page === 0}
+              disabled={(page === 0) | disable}
             >
               <ArrowBackIosNewIcon />
             </Button>
@@ -623,7 +623,7 @@ const Multi = () => {
               onClick={() => {
                 incrPage();
               }}
-              disabled={page === 2}
+              disabled={(page === 2)|disable}
             >
               <ArrowForwardIosIcon />
             </Button>
