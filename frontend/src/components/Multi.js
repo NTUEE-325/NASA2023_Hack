@@ -248,7 +248,6 @@ const Multi = () => {
             n.timing + time,
             n.velocity
           );
-          // console.log(n);
         });
       });
     }
@@ -262,7 +261,6 @@ const Multi = () => {
             n.timing + time,
             n.velocity
           );
-          // console.log(n);
         });
       });
     }
@@ -276,7 +274,6 @@ const Multi = () => {
             n.timing + time,
             n.velocity
           );
-          // console.log(n);
         });
       });
     }

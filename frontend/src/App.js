@@ -16,25 +16,26 @@ import {
 import * as Tone from "tone";
 
 const App = () => {
-  const panner1 = new Tone.Panner3D({
+
+  const panner_piano = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : -1.732,
+    positionY : 0,
+    positionZ : -1,
+  }).toDestination();
+  const panner_bossoon = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : 1.732,
+    positionY : 0,
+    positionZ : -1,
+  }).toDestination();
+  const panner_clarinet = new Tone.Panner3D({
     panningModel: "HRTF",
     positionX : 0,
     positionY : 0,
     positionZ : 2,
   }).toDestination();
-  const panner2 = new Tone.Panner3D({
-    panningModel: "HRTF",
-    positionX : 0,
-    positionY : 0,
-    positionZ : 2,
-  }).toDestination();
-  const panner3 = new Tone.Panner3D({
-    panningModel: "HRTF",
-    positionX : -2,
-    positionY : 0,
-    positionZ : 2,
-  }).toDestination();
-  const panner4 = new Tone.Panner3D({
+  const panner_contrabass = new Tone.Panner3D({
     panningModel: "HRTF",
     positionX : -2,
     positionY : 0,
@@ -46,25 +47,25 @@ const App = () => {
     onload: () => {
       console.log("Finish loading piano!");
     },
-  }).connect(panner1);
+  }).connect(panner_piano);
   const bassoon = new Tone.Sampler({
     urls: bassoon_urls,
     onload: () => {
       console.log("Finish loading bassoon!");
     },
-  }).connect(panner2);
+  }).connect(panner_bossoon);
   const clarinet = new Tone.Sampler({
     urls: clarinet_urls,
     onload: () => {
       console.log("Finish loading clarinet!");
     },
-  }).connect(panner3);
+  }).connect(panner_clarinet);
   const contrabass = new Tone.Sampler({
     urls: contrabass_urls,
     onload: () => {
       console.log("Finish loading contrabass!");
     },
-  }).connect(panner4);
+  }).connect(panner_contrabass);
 
   const value = { piano, bassoon, clarinet, contrabass };
   return (

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useContext, useState } from "react";
 import InstrumentContext from "./useInstruments";
 import { Button } from "@mui/material";
-import test_video from "./../assets/01.mp4";
+import test_video from "./../assets/04_01.mp4";
 import * as Tone from "tone";
 import { piano_mapping, bassoon_mapping, clarinet_mapping, contrabass_mapping } from "../constant/pitch";
 import { directions } from "../constant/direction"
@@ -12,6 +12,12 @@ let prevSoundMs = 0;
 let nextSoundMs;
 let soundCounter = 0;
 
+const f = 156;
+let fc = 0;
+
+const rotate_coefficient = 0.08;
+let rotate_angle = 0;
+
 const Explore = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -20,6 +26,7 @@ const Explore = () => {
   let reqID = null;
 
   const capture = () => {
+
     const nowMs = Date.now();
     if (prevMs !== nowMs) {
       let video = videoRef.current;
@@ -33,6 +40,14 @@ const Explore = () => {
           reqID = window.requestAnimationFrame(capture);
           return;
         }
+
+        if (fc == 0) {
+          rotate_angle = 0;
+          soundCounter = 0;
+        }
+        fc = (fc + 1) % f;
+
+        console.log("frame count:", fc);
 
         canvas.width = width;
         canvas.height = height;
@@ -98,7 +113,7 @@ const Explore = () => {
 
         if (selected.length > 0) {
           nextSoundMs = Date.now();
-          if (prevSoundMs == 0 || nextSoundMs - prevSoundMs > 7/29){
+          if (prevSoundMs == 0 || nextSoundMs - prevSoundMs > (7/29) * 1000){
             prevSoundMs = nextSoundMs;
 
             let direction = directions[soundCounter];
@@ -127,8 +142,8 @@ const Explore = () => {
             const color2pitch = {"r": piano_mapping, "g": bassoon_mapping, "b": clarinet_mapping};
             const max_brightness = 250;
 
-            for (let i = 0; i < Math.min(2, selected.length); i++) {
-              for (let j = 0; j < 3; j++) {
+            for (let i = 1; i < Math.min(2, selected.length); i++) {
+              for (let j = 0; j < 2; j++) {
                 let color = colors[j];
   
                 let pitch_numbers = color2pitch[color].length;
@@ -154,9 +169,10 @@ const Explore = () => {
                   velocity
                 )
               }
-
-              Tone.Listener.forwardX.value = Math.sin(1.23);
-              Tone.Listener.forwardZ.value = -Math.cos(1.23);
+              console.log(rotate_angle);
+              Tone.Listener.forwardX.value = Math.sin(rotate_angle);
+              Tone.Listener.forwardZ.value = Math.cos(rotate_angle);
+              rotate_angle += direction.x * rotate_coefficient;
             }
           }
         }
