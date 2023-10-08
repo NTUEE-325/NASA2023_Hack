@@ -130,7 +130,7 @@ const Multi = () => {
   let count_x = 0;
   let reqID = null;
 
-  Tone.Transport.scheduleOnce((time) => {
+  Tone.Transport.scheduleRepeat((time) => {
     piano_note.forEach((n) => {
       piano.triggerAttackRelease(
         [n.pitch],
@@ -140,9 +140,9 @@ const Multi = () => {
       );
       // console.log(n);
     });
-  }, 0.1);
+  }, 10);
 
-  Tone.Transport.scheduleOnce((time) => {
+  Tone.Transport.scheduleRepeat((time) => {
     basson_note.forEach((n) => {
       bassoon.triggerAttackRelease(
         [n.pitch],
@@ -152,9 +152,9 @@ const Multi = () => {
       );
       // console.log(n);
     });
-  }, 0.1);
+  }, 10);
 
-  Tone.Transport.scheduleOnce((time) => {
+  Tone.Transport.scheduleRepeat((time) => {
     clarinet_note.forEach((n) => {
       clarinet.triggerAttackRelease(
         [n.pitch],
@@ -164,9 +164,9 @@ const Multi = () => {
       );
       // console.log(n);
     });
-  }, 0.1);
+  }, 10);
 
-  Tone.Transport.scheduleOnce((time) => {
+  Tone.Transport.scheduleRepeat((time) => {
     contrabass_note.forEach((n) => {
       contrabass.triggerAttackRelease(
         [n.pitch],
@@ -176,7 +176,7 @@ const Multi = () => {
       );
       // console.log(n);
     });
-  }, 0.1);
+  }, 10);
 
   const handleChange = (index) => {
     let temp = items.slice();
@@ -336,11 +336,13 @@ const Multi = () => {
 
   const playTest = () => {
     // polyphonic sampler allows multi sound?
-    const now = Tone.now();
+    Tone.start();
+    let now = Tone.now();
     // playNote(piano, "B3", 0.25, 0, now);
 
-    Tone.start();
+    // Tone.start();
     Tone.Transport.start();
+    Tone.Transport.stop(now+10)
     animate();
   };
 
