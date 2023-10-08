@@ -25,13 +25,15 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 let prevMs = -1;
 
 const Multi = () => {
-  const img_names = ["NGC13", "NGC100"];
+  const img_names = ["NGC13", "NGC100", "NGC30"];
   const description = [
     "NGC 13 is a spiral galaxy in the constellation Andromeda. It is estimated \
     to be about 220 million light-years (66 Megaparsecs) away from the Sun.\
      It was first discovered on November 26, 1790, by William Herschel.",
     "NGC 100 is a galaxy located approximately 60 million light-years from the Solar System in the constellation Pisces.\
      It has an apparent magnitude of 13.2. It was first discovered on 10 November 1885 by American astronomer Lewis Swift.",
+    "NGC 30 is a Double Star in the Pegasus constellation. NGC 30 is situated close to the celestial equator and, as such,\
+      it is at least partly visible from both hemispheres in certain times of the year.",
   ];
 
   const [page, setPage] = useState(0);
