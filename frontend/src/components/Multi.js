@@ -13,6 +13,7 @@ import useInstruments from "./useInstruments";
 
 const Multi = () => {
   const { piano, bassoon, clarinet, contrabass } = useInstruments();
+  const [image_url, setImage_url] = useState("");
   const [items, setItems] = useState([
     { name: "channel1", checked: true },
     { name: "channel2", checked: false },
@@ -38,7 +39,7 @@ const Multi = () => {
   // }, 4);
 
   const handleChange = (index) => {
-    // console.log(items.filter((item) => item.checked === true));
+    console.log(items.filter((item) => item.checked === true));
     let temp = items.slice();
     temp[index].checked = !items[index].checked;
     setItems(temp);
@@ -97,6 +98,7 @@ const Multi = () => {
         >
           Play
         </Button>
+        <img src={image_url} />
       </Grid>
     </Grid>
   );
