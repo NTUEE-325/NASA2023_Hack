@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Grid, Container, Typography } from "@mui/material";
+import React from "react";
+import { Grid, Typography } from "@mui/material";
 import planet from "./../assets/planet.png";
 const Home = () => {
   return (

@@ -236,6 +236,9 @@ const Multi = () => {
     //change imgUrl
     let result = items.map((a) => a.checked);
     let image = imageRef.current;
+    let canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (image !== null) {
       if (page === 0) {
         if (result[0] === false) {
@@ -425,9 +428,16 @@ const Multi = () => {
         }
       }
     }
+    image.onload = () => {
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    };
   }, [items, page]);
 
   useEffect(() => {
+    let image = imageRef.current;
+    let canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     return () => {
       window.cancelAnimationFrame(reqID);
     };
