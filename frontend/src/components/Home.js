@@ -25,7 +25,7 @@ const Home = () => {
         }}
       >
         <Typography
-          sx={{ color: "rgb(255,255,255)", fontSize: 70, marginBottom: "5vh" }}
+          sx={{ color: "rgb(255,255,255)", fontSize: 70, marginBottom: "3vh" }}
         >
           Immersed in the Sounds of Space
         </Typography>

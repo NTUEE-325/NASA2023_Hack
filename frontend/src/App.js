@@ -42,6 +42,7 @@ const App = () => {
       console.log("Finish loading contrabass!");
     },
   }).toDestination();
+
   const value = { piano, bassoon, clarinet, contrabass };
   return (
     <BrowserRouter>

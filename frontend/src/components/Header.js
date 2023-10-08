@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Tabs, Tab } from "@mui/material";
 import "./App.css";
 
 const Header = () => {
   const [value, setValue] = useState("0");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = (event, newValue) => {
     // console.log(newValue);
@@ -20,6 +21,18 @@ const Header = () => {
       navigate("/custom");
     }
   };
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setValue("0");
+    } else if (location.pathname === "/explore") {
+      setValue("1");
+    } else if (location.pathname === "/multi") {
+      setValue("2");
+    } else {
+      setValue("3");
+    }
+  }, []);
 
   return (
     <div
