@@ -21,23 +21,43 @@ if __name__ == "__main__":
 
     ### 1st type
 
-    piano_mapping = [   "D1", "F#1", "G1", "B1",
+    # piano_mapping = [   "D1", "F#1", "G1", "B1",
+    #                     "D2", "F#2", "G2", "B2",
+    #                     "D3", "F#3", "G3", "B3",
+    #                     "D4", "F#4", "G4", "B4",
+    #                     "D5", "F#5", "G5", "B5",
+    #                     "D6", "F#6", "G6", "B6",
+    #                     "D7", "F#7", "G7", "B7"]
+
+    # basson_mapping = [  "D3", "F#3", "G3", "B3",
+    #                     "D4", "F#4", "G4"]
+
+    # clarinet_mapping=[  "D3", "F#3", "G3", "B3",
+    #                     "D4", "F#4", "G4", "B4",
+    #                     "D5", "F#5", "G5", "B5",
+    #                     "D6", "F#6"]
+
+    # contrabass_mapping=["F#1", "G1", "B1",
+    #                     "D2", "F#2", "G2", "B2",
+    #                     "D3", "F#3", "G3", "G#3"]
+
+    ### 1st type revise
+
+    piano_mapping = [   
                         "D2", "F#2", "G2", "B2",
                         "D3", "F#3", "G3", "B3",
                         "D4", "F#4", "G4", "B4",
                         "D5", "F#5", "G5", "B5",
-                        "D6", "F#6", "G6", "B6",
-                        "D7", "F#7", "G7", "B7"]
+                        "D6", "F#6", "G6", "B6"]
 
     basson_mapping = [  "D3", "F#3", "G3", "B3",
                         "D4", "F#4", "G4"]
 
     clarinet_mapping=[  "D3", "F#3", "G3", "B3",
                         "D4", "F#4", "G4", "B4",
-                        "D5", "F#5", "G5", "B5",
-                        "D6", "F#6"]
+                        "D5", "F#5", "G5", "B5"]
 
-    contrabass_mapping=["F#1", "G1", "B1",
+    contrabass_mapping=[
                         "D2", "F#2", "G2", "B2",
                         "D3", "F#3", "G3", "G#3"]
 
@@ -131,13 +151,13 @@ if __name__ == "__main__":
 
     mapping = [piano_mapping, clarinet_mapping, basson_mapping, contrabass_mapping]
     name = ['piano_note', 'clarinet_note', 'basson_note','contrabass_note']
-    velocity = [1, 1, 1, 1]
+    velocity = [0.5, 0.7, 0.7, 0.8]
 
     files = ['w1.fits', 'w2.fits', 'w3.fits', 'w4.fits']
 
     # os.remove(os.path.join(data_path, 'melody.js'))
-    file_path = '../frontend/src/constant/melody3.js'
-    # os.remove(file_path)
+    file_path = '../frontend/src/constant/melody1.js'
+    os.remove(file_path)
 
     for j, file in enumerate(files):
         image_data = fits.open(os.path.join(data_path, file))[0].data
@@ -195,7 +215,7 @@ if __name__ == "__main__":
         # file_path = os.path.join(data_path, 'melody.js')
 
         with open(file_path, 'a') as f:
-            f.write(f"export const {name[j]}_3 = ")
+            f.write(f"export const {name[j]}_1 = ")
         with open(file_path, 'a') as f:
             json.dump(arr, f, indent=2)
             f.write('\n')     

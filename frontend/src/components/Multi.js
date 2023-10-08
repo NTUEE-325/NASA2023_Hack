@@ -239,7 +239,7 @@ const Multi = () => {
       });
     }
 
-    if (result[1]) {
+    if (result[2]) {
       Tone.Transport.scheduleOnce((time) => {
         basson_note.forEach((n) => {
           bassoon.triggerAttackRelease(
@@ -253,7 +253,7 @@ const Multi = () => {
       });
     }
 
-    if (result[2]) {
+    if (result[1]) {
       Tone.Transport.scheduleOnce((time) => {
         clarinet_note.forEach((n) => {
           clarinet.triggerAttackRelease(
