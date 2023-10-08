@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# NASA2023_Hack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Summary
+We provided an open-source web application to revolutionize the way users interact with various forms of 3D data, such as fly-through videos and multi-channel images. In the case of video, we calculated the viewer's trajectory and enhances the audio experience accordingly. For multi-channel image, we ensembled features from different channels and allows the audience to choose their preferred channel for auditory exploration. Our results not only showcase the effectiveness of these techniques but also open up new possibilities for immersive, personalized auditory experiences.
 
-## Available Scripts
+## Project Details
 
-In the project directory, you can run:
+We adopt the following strategy to realize the sonification of 3D data:
 
-### `npm start`
+Fly-through video
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. We integrate the *Lucas-Kanade Optical flow* method in OpenCV to track the viewer's movement within the video. *Contour detection* is used to identify the celestial objects and provide the reference for optical flow.
+2. From the movement of the viewer, we utilize *Panner3D* in tone.js to position audio tracks in a three-dimensional space around the viewer. For instance, if the viewer is turning clockwise, then the sound source corresponds by turning counterclockwise, and vice versa. This spatialization adds depth and realism to the auditory experience.
+3. Sound sources are triggered when a celestial object, such as a star, interacts with an imaginary equidistant surface surrounding the viewer. We map the color of the starlight to different instruments, treating them as discrete data. For continuous data like brightness and position of the stars, we map them to sound volume and frequency, respectively.
+   
+[Note] For better audio experience, please wear earphones for the sonification.
 
-### `npm test`
+Multi-channel Image
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+1. We preprocess the WISE data in *log-scale* and filtered out unnecessary noise. This ensures a smoother and more consistent intensity across the audio channels.
+2. We choose musical instruments that complement the characteristics of different wavelengths. Sharp instruments are employed for shorter wavelengths, while deeper and resonant instruments are used for longer wavelengths. This selection enriches the timbral variety.
+3. We scan through the picture in the horizontal direction, and the position of stars and galaxies are encoded into distinct frequencies within the audio spectrum.
+4. We also provide a visualization of high dimensional data through color.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To produce pleasant sounds instead of sine wave, we use the *Sampler* in tone.js to create sound from instruments.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Our project serves as a solution for sonifying 3D data, with a particular emphasis on enhancing accessibility for scientists and visually impaired individuals seeking new ways to explore and interpret such data.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The entire project is developed using React and is hosted on render.com.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+We adopt the following strategy to realize the sonification of 3D data:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Run locally
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- install NVM, npm
+- install nodejs (we try 20.4.0, 14.7.0)
+- clone the repo
 
-### Code Splitting
+cd frontend
+npm install
+npm run start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Multi-channel Image Processing
 
-### Analyzing the Bundle Size
+### .fits data to tone.js composable information
+- put your downloaded .fits file from [link](https://irsa.ipac.caltech.edu/applications/wise/?__action=layout.showDropDown&) as the format in MultiChannel
+```
+├── MultiChannel
+│   ├── folder_path
+│   │   ├── w*.fits
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+cd MultiChannel
+python image_processing.py folder_path
+```
 
-### Making a Progressive Web App
+change the output path if you want
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### .fits data visualization
+```bash
+python Fits2pandas.py
+```
+change the input and output path if you want
 
-### Advanced Configuration
+## Optical flow detection
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Contour detection & Optical flow detection
 
-### Deployment
+- Contour detection is used to pick out the celestic objects, such as stars, to provide the reference for optical flow detection later on.
+- The estimated optical flow is used to evaluate the average velocity field of the stars, and therefore we can extract the movement of the view.
+- We further pass the information of movement, written in direction.js, to the frontend such that the frontend can adjust the listener's position. Therefore, the auditor can sense the change of audio source position.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### directions.js generation
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- directions.js can be generated from OpticalFlow/direction.ipynb. Substitute the video_path.mp4 file and execute all cells. The file will be saved in OpticalFlow/ directory.
