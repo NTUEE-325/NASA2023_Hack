@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import Home from "./components/Home";
@@ -7,13 +7,8 @@ import Multi from "./components/Multi";
 import theme from "./components/theme";
 import Custom from "./components/Custom";
 import { ThemeProvider } from "@emotion/react";
-import useInstruments from "./components/useInstruments";
 
 const App = () => {
-  const { init_Inst } = useInstruments();
-  useEffect(() => {
-    init_Inst();
-  }, []);
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
