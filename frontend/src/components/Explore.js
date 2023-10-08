@@ -16,6 +16,7 @@ const Explore = () => {
   const { piano, bassoon, clarinet, contrabass } =
     useContext(InstrumentContext);
   let reqID = null;
+  let random_duration = 0;
 
   const capture = () => {
     const nowMs = Date.now();
@@ -144,15 +145,15 @@ const Explore = () => {
             // 360 -> (pitch).length
             //
             const colors = ["r", "g", "b"];
-            const color2instrument = {"r": piano, "g": bassoon, "b": contrabass};
-            const color2pitch = {"r": piano_mapping, "g": bassoon_mapping, "b": contrabass_mapping};
+            const color2instrument = {"r": piano, "g": bassoon, "b": clarinet};
+            const color2pitch = {"r": piano_mapping, "g": bassoon_mapping, "b": clarinet_mapping};
             const max_brightness = 250;
 
-            for (let i = 0; i < Math.min(2, selected.length); i++) {
+            for (let i = 0; i < selected.length; i++) {
               /* ---------------------------------------------------------- */
               /* ---------------------- R : piano ------------------------- */
               /* ---------------------------------------------------------- */
-              for (let j = 0; j < 1; j++) {
+              for (let j = 0; j < 3; j++) {
                 let color = colors[j];
   
                 let pitch_numbers = color2pitch[color].length;
@@ -230,7 +231,6 @@ const Explore = () => {
             }
           }
         }
-
 
         reqID = window.requestAnimationFrame(capture);
         prevMs = nowMs;
