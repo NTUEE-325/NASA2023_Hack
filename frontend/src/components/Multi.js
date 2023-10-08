@@ -131,53 +131,53 @@ const Multi = () => {
   let count_x = 0;
   let reqID = null;
 
-  Tone.Transport.scheduleRepeat((time) => {
-    piano_note.forEach((n) => {
-      piano.triggerAttackRelease(
-        [n.pitch],
-        n.duration,
-        n.timing + time,
-        n.velocity
-      );
-      // console.log(n);
-    });
-  }, 10);
+  // Tone.Transport.scheduleRepeat((time) => {
+  //   piano_note.forEach((n) => {
+  //     piano.triggerAttackRelease(
+  //       [n.pitch],
+  //       n.duration,
+  //       n.timing + time,
+  //       n.velocity
+  //     );
+  //     // console.log(n);
+  //   });
+  // }, 10);
 
-  Tone.Transport.scheduleRepeat((time) => {
-    basson_note.forEach((n) => {
-      bassoon.triggerAttackRelease(
-        [n.pitch],
-        n.duration,
-        n.timing + time,
-        n.velocity
-      );
-      // console.log(n);
-    });
-  }, 10);
+  // Tone.Transport.scheduleRepeat((time) => {
+  //   basson_note.forEach((n) => {
+  //     bassoon.triggerAttackRelease(
+  //       [n.pitch],
+  //       n.duration,
+  //       n.timing + time,
+  //       n.velocity
+  //     );
+  //     // console.log(n);
+  //   });
+  // }, 10);
 
-  Tone.Transport.scheduleRepeat((time) => {
-    clarinet_note.forEach((n) => {
-      clarinet.triggerAttackRelease(
-        [n.pitch],
-        n.duration,
-        n.timing + time,
-        n.velocity
-      );
-      // console.log(n);
-    });
-  }, 10);
+  // Tone.Transport.scheduleRepeat((time) => {
+  //   clarinet_note.forEach((n) => {
+  //     clarinet.triggerAttackRelease(
+  //       [n.pitch],
+  //       n.duration,
+  //       n.timing + time,
+  //       n.velocity
+  //     );
+  //     // console.log(n);
+  //   });
+  // }, 10);
 
-  Tone.Transport.scheduleRepeat((time) => {
-    contrabass_note.forEach((n) => {
-      contrabass.triggerAttackRelease(
-        [n.pitch],
-        n.duration,
-        n.timing + time,
-        n.velocity
-      );
-      // console.log(n);
-    });
-  }, 10);
+  // Tone.Transport.scheduleRepeat((time) => {
+  //   contrabass_note.forEach((n) => {
+  //     contrabass.triggerAttackRelease(
+  //       [n.pitch],
+  //       n.duration,
+  //       n.timing + time,
+  //       n.velocity
+  //     );
+  //     // console.log(n);
+  //   });
+  // }, 10);
 
   const handleChange = (index) => {
     let temp = items.slice();
@@ -193,11 +193,74 @@ const Multi = () => {
 
     // Tone.start();
 
-    Tone.Transport.start();
-    Tone.Transport.stop(now + 10);
+    let result = items.map((a) => a.checked);
+
+    if (result[0]) {
+      Tone.Transport.scheduleOnce((time) => {
+        piano_note.forEach((n) => {
+          piano.triggerAttackRelease(
+            [n.pitch],
+            n.duration,
+            n.timing + time,
+            n.velocity
+          );
+          // console.log(n);
+        });
+      });
+    }
+    
+    if (result[1]){
+      Tone.Transport.scheduleOnce((time) => {
+        basson_note.forEach((n) => {
+          bassoon.triggerAttackRelease(
+            [n.pitch],
+            n.duration,
+            n.timing + time,
+            n.velocity
+          );
+          // console.log(n);
+        });
+      });  
+    }
+
+    if (result[2]){
+      Tone.Transport.scheduleOnce((time) => {
+        clarinet_note.forEach((n) => {
+          clarinet.triggerAttackRelease(
+            [n.pitch],
+            n.duration,
+            n.timing + time,
+            n.velocity
+          );
+          // console.log(n);
+        });
+      });
+    }
+    
+    if (result[3]){
+      Tone.Transport.scheduleOnce((time) => {
+        contrabass_note.forEach((n) => {
+          contrabass.triggerAttackRelease(
+            [n.pitch],
+            n.duration,
+            n.timing + time,
+            n.velocity
+          );
+          // console.log(n);
+        });
+      });
+    }
+  
+    console.log(result)
+
+    // Tone.start();
+    if (result[0] | result[1] | result[2] | result[3]){
+      Tone.Transport.start();
+    }
+
     animate();
     setDisable(true);
-    setInterval(() => {
+    setTimeout(() => {
       setDisable(false);
     }, 10000);
   };
