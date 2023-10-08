@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import Explore from "./components/Explore";
 import Multi from "./components/Multi";
 import theme from "./components/theme";
-import Custom from "./components/Custom";
 import { ThemeProvider } from "@emotion/react";
 import InstrumentContext from "./components/useInstruments";
 import {
@@ -17,31 +16,55 @@ import {
 import * as Tone from "tone";
 
 const App = () => {
+  const panner1 = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : 0,
+    positionY : 0,
+    positionZ : 2,
+  }).toDestination();
+  const panner2 = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : 0,
+    positionY : 0,
+    positionZ : 2,
+  }).toDestination();
+  const panner3 = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : -2,
+    positionY : 0,
+    positionZ : 2,
+  }).toDestination();
+  const panner4 = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : -2,
+    positionY : 0,
+    positionZ : -2,
+  }).toDestination();
+
   const piano = new Tone.Sampler({
     urls: piano_urls,
     onload: () => {
       console.log("Finish loading piano!");
     },
-  }).toDestination();
+  }).connect(panner1);
   const bassoon = new Tone.Sampler({
     urls: bassoon_urls,
     onload: () => {
       console.log("Finish loading bassoon!");
     },
-  }).toDestination();
+  }).connect(panner2);
   const clarinet = new Tone.Sampler({
     urls: clarinet_urls,
     onload: () => {
       console.log("Finish loading clarinet!");
     },
-  }).toDestination();
-
+  }).connect(panner3);
   const contrabass = new Tone.Sampler({
     urls: contrabass_urls,
     onload: () => {
       console.log("Finish loading contrabass!");
     },
-  }).toDestination();
+  }).connect(panner4);
 
   const value = { piano, bassoon, clarinet, contrabass };
   return (
@@ -53,7 +76,6 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/multi" element={<Multi />} />
-              <Route path="/custom" element={<Custom />} />
             </Route>
           </Routes>
         </InstrumentContext.Provider>

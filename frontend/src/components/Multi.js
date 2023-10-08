@@ -14,11 +14,23 @@ import * as Tone from "tone";
 // import useInstruments from "./useInstruments";
 import InstrumentContext from "./useInstruments";
 import {
-  piano_note,
-  basson_note,
-  clarinet_note,
-  contrabass_note,
-} from "../constant/melody";
+  piano_note_1,
+  basson_note_1,
+  clarinet_note_1,
+  contrabass_note_1,
+} from "../constant/melody1";
+import {
+  piano_note_2,
+  basson_note_2,
+  clarinet_note_2,
+  contrabass_note_2,
+} from "../constant/melody2";
+import {
+  piano_note_3,
+  basson_note_3,
+  clarinet_note_3,
+  contrabass_note_3,
+} from "../constant/melody3";
 
 /* File generated automatically by python. */
 import pic_1_0000 from "./../assets/image1/1_0000.jpg";
@@ -131,53 +143,53 @@ const Multi = () => {
   let count_x = 0;
   let reqID = null;
 
-  Tone.Transport.scheduleRepeat((time) => {
-    piano_note.forEach((n) => {
-      piano.triggerAttackRelease(
-        [n.pitch],
-        n.duration,
-        n.timing + time,
-        n.velocity
-      );
-      // console.log(n);
-    });
-  }, 10);
+  // Tone.Transport.scheduleRepeat((time) => {
+  //   piano_note.forEach((n) => {
+  //     piano.triggerAttackRelease(
+  //       [n.pitch],
+  //       n.duration,
+  //       n.timing + time,
+  //       n.velocity
+  //     );
+  //     // console.log(n);
+  //   });
+  // }, 10);
 
-  Tone.Transport.scheduleRepeat((time) => {
-    basson_note.forEach((n) => {
-      bassoon.triggerAttackRelease(
-        [n.pitch],
-        n.duration,
-        n.timing + time,
-        n.velocity
-      );
-      // console.log(n);
-    });
-  }, 10);
+  // Tone.Transport.scheduleRepeat((time) => {
+  //   basson_note.forEach((n) => {
+  //     bassoon.triggerAttackRelease(
+  //       [n.pitch],
+  //       n.duration,
+  //       n.timing + time,
+  //       n.velocity
+  //     );
+  //     // console.log(n);
+  //   });
+  // }, 10);
 
-  Tone.Transport.scheduleRepeat((time) => {
-    clarinet_note.forEach((n) => {
-      clarinet.triggerAttackRelease(
-        [n.pitch],
-        n.duration,
-        n.timing + time,
-        n.velocity
-      );
-      // console.log(n);
-    });
-  }, 10);
+  // Tone.Transport.scheduleRepeat((time) => {
+  //   clarinet_note.forEach((n) => {
+  //     clarinet.triggerAttackRelease(
+  //       [n.pitch],
+  //       n.duration,
+  //       n.timing + time,
+  //       n.velocity
+  //     );
+  //     // console.log(n);
+  //   });
+  // }, 10);
 
-  Tone.Transport.scheduleRepeat((time) => {
-    contrabass_note.forEach((n) => {
-      contrabass.triggerAttackRelease(
-        [n.pitch],
-        n.duration,
-        n.timing + time,
-        n.velocity
-      );
-      // console.log(n);
-    });
-  }, 10);
+  // Tone.Transport.scheduleRepeat((time) => {
+  //   contrabass_note.forEach((n) => {
+  //     contrabass.triggerAttackRelease(
+  //       [n.pitch],
+  //       n.duration,
+  //       n.timing + time,
+  //       n.velocity
+  //     );
+  //     // console.log(n);
+  //   });
+  // }, 10);
 
   const handleChange = (index) => {
     let temp = items.slice();
@@ -192,12 +204,93 @@ const Multi = () => {
     // playNote(piano, "B3", 0.25, 0, now);
 
     // Tone.start();
+    
+    let piano_note, basson_note, clarinet_note, contrabass_note;
+    if (page===0){
+      piano_note = piano_note_1;
+      basson_note = basson_note_1;
+      clarinet_note = clarinet_note_1;
+      contrabass_note = contrabass_note_1; 
+    } else if (page===1){
+      piano_note = piano_note_2;
+      basson_note = basson_note_2;
+      clarinet_note = clarinet_note_2;
+      contrabass_note = contrabass_note_2; 
+    } else {
+      piano_note = piano_note_3;
+      basson_note = basson_note_3;
+      clarinet_note = clarinet_note_3;
+      contrabass_note = contrabass_note_3; 
+    }
 
-    Tone.Transport.start();
-    Tone.Transport.stop(now + 10);
+    let result = items.map((a) => a.checked);
+
+    if (result[0]) {
+      Tone.Transport.scheduleOnce((time) => {
+        piano_note.forEach((n) => {
+          piano.triggerAttackRelease(
+            [n.pitch],
+            n.duration,
+            n.timing + time,
+            n.velocity
+          );
+          // console.log(n);
+        });
+      });
+    }
+
+    if (result[2]) {
+      Tone.Transport.scheduleOnce((time) => {
+        basson_note.forEach((n) => {
+          bassoon.triggerAttackRelease(
+            [n.pitch],
+            n.duration,
+            n.timing + time,
+            n.velocity
+          );
+          // console.log(n);
+        });
+      });
+    }
+
+    if (result[1]) {
+      Tone.Transport.scheduleOnce((time) => {
+        clarinet_note.forEach((n) => {
+          clarinet.triggerAttackRelease(
+            [n.pitch],
+            n.duration,
+            n.timing + time,
+            n.velocity
+          );
+          // console.log(n);
+        });
+      });
+    }
+
+    if (result[3]) {
+      Tone.Transport.scheduleOnce((time) => {
+        contrabass_note.forEach((n) => {
+          contrabass.triggerAttackRelease(
+            [n.pitch],
+            n.duration,
+            n.timing + time,
+            n.velocity
+          );
+          // console.log(n);
+        });
+      });
+    }
+
+    console.log(result);
+
+    // Tone.start();
+    if (result[0] | result[1] | result[2] | result[3]) {
+      Tone.Transport.start();
+    }
+
     animate();
     setDisable(true);
-    setInterval(() => {
+    setTimeout(() => {
       setDisable(false);
     }, 10000);
   };
@@ -236,6 +329,9 @@ const Multi = () => {
     //change imgUrl
     let result = items.map((a) => a.checked);
     let image = imageRef.current;
+    let canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (image !== null) {
       if (page === 0) {
         if (result[0] === false) {
@@ -425,9 +521,16 @@ const Multi = () => {
         }
       }
     }
+    image.onload = () => {
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    };
   }, [items, page]);
 
   useEffect(() => {
+    let image = imageRef.current;
+    let canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     return () => {
       window.cancelAnimationFrame(reqID);
     };
@@ -436,17 +539,17 @@ const Multi = () => {
   return (
     <Grid
       container
-      sx={{ paddingTop: "18vh", marginLeft: "4vw", marginRight: "4vw" }}
+      sx={{ paddingTop: "18vh", paddingLeft: "4vw", paddingRight: "4vw" }}
     >
-      <Grid item xs={5}>
+      <Grid item xs={6}>
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: "rgba(220,220,220,0.2)",
-            marginLeft: "10vw",
-            marginRight: "10vw",
+            marginLeft: "4vw",
+            marginRight: "4vw",
             paddingLeft: "1vw",
             paddingRight: "1vw",
             paddingTop: "1vh",
@@ -489,6 +592,7 @@ const Multi = () => {
               onClick={() => {
                 decrPage();
               }}
+              disabled={page === 0}
             >
               <ArrowBackIosNewIcon />
             </Button>
@@ -522,6 +626,7 @@ const Multi = () => {
               onClick={() => {
                 incrPage();
               }}
+              disabled={page === 2}
             >
               <ArrowForwardIosIcon />
             </Button>
@@ -530,10 +635,8 @@ const Multi = () => {
       </Grid>
       <Grid
         item
-        xs={7}
+        xs={6}
         sx={{
-          paddingLeft: "5vw",
-          paddingRight: "5vw",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

@@ -1,5 +1,5 @@
 import * as Tone from "tone";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 // const useInstruments = () => {
 //   const piano = new Tone.Sampler({
@@ -39,7 +39,9 @@ const InstrumentContext = createContext({
   piano: Tone.Sampler,
   bassoon: Tone.Sampler,
   clarinet: Tone.Sampler,
-  contrabass: Tone.Sampler,
+  contrabass: Tone.Sampler
 });
+
+
 // export default useInstruments;
 export default InstrumentContext;

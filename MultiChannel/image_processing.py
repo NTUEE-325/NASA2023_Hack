@@ -41,6 +41,26 @@ if __name__ == "__main__":
     #                     "D2", "F#2", "G2", "B2",
     #                     "D3", "F#3", "G3", "G#3"]
 
+    ### 1st type revise
+
+    piano_mapping = [   
+                        "D2", "F#2", "G2", "B2",
+                        "D3", "F#3", "G3", "B3",
+                        "D4", "F#4", "G4", "B4",
+                        "D5", "F#5", "G5", "B5",
+                        "D6", "F#6", "G6", "B6"]
+
+    basson_mapping = [  "D3", "F#3", "G3", "B3",
+                        "D4", "F#4", "G4"]
+
+    clarinet_mapping=[  "D3", "F#3", "G3", "B3",
+                        "D4", "F#4", "G4", "B4",
+                        "D5", "F#5", "G5", "B5"]
+
+    contrabass_mapping=[
+                        "D2", "F#2", "G2", "B2",
+                        "D3", "F#3", "G3", "G#3"]
+
     ### 2nd type 
 
     # piano_mapping = [   "C#1", "D#1", "F#1", "G#1", "A#1",
@@ -65,25 +85,25 @@ if __name__ == "__main__":
 
     ### 3rd type
 
-    piano_mapping = [   "C1", "D#1", "F1", "A1", 
-                        "C2", "D#2", "F2", "A2", 
-                        "C3", "D#3", "F3", "A3", 
-                        "C4", "D#4", "F4", "A4", 
-                        "C5", "D#5", "F5", "A5", 
-                        "C6", "D#6", "F6", "A6", 
-                        "C7", "D#7", "F7", "A7"]
+    # piano_mapping = [   "C1", "D#1", "F1", "A1", 
+    #                     "C2", "D#2", "F2", "A2", 
+    #                     "C3", "D#3", "F3", "A3", 
+    #                     "C4", "D#4", "F4", "A4", 
+    #                     "C5", "D#5", "F5", "A5", 
+    #                     "C6", "D#6", "F6", "A6", 
+    #                     "C7", "D#7", "F7", "A7"]
 
-    basson_mapping = [  "D#3", "F3", "A3",
-                        "C4", "D#4", "F4", "A4"]
+    # basson_mapping = [  "D#3", "F3", "A3",
+    #                     "C4", "D#4", "F4", "A4"]
 
-    clarinet_mapping=[  "D#3", "F3", "A3", 
-                        "C4", "D#4", "F4", "A4", 
-                        "C5", "D#5", "F5", "A5", 
-                        "C6", "D#6", "F6"]
+    # clarinet_mapping=[  "D#3", "F3", "A3", 
+    #                     "C4", "D#4", "F4", "A4", 
+    #                     "C5", "D#5", "F5", "A5", 
+    #                     "C6", "D#6", "F6"]
 
-    contrabass_mapping=["A1",
-                        "C2", "D#2", "F2", "A2", 
-                        "C3", "D#3", "F3"]
+    # contrabass_mapping=["A1",
+    #                     "C2", "D#2", "F2", "A2", 
+    #                     "C3", "D#3", "F3"]
 
     ### 4th type
 
@@ -131,12 +151,12 @@ if __name__ == "__main__":
 
     mapping = [piano_mapping, clarinet_mapping, basson_mapping, contrabass_mapping]
     name = ['piano_note', 'clarinet_note', 'basson_note','contrabass_note']
-    velocity = [1, 1, 1, 1]
+    velocity = [0.5, 0.7, 0.7, 0.8]
 
     files = ['w1.fits', 'w2.fits', 'w3.fits', 'w4.fits']
 
     # os.remove(os.path.join(data_path, 'melody.js'))
-    file_path = '../frontend/src/constant/melody.js'
+    file_path = '../frontend/src/constant/melody1.js'
     os.remove(file_path)
 
     for j, file in enumerate(files):
@@ -195,7 +215,7 @@ if __name__ == "__main__":
         # file_path = os.path.join(data_path, 'melody.js')
 
         with open(file_path, 'a') as f:
-            f.write(f"export const {name[j]} = ")
+            f.write(f"export const {name[j]}_1 = ")
         with open(file_path, 'a') as f:
             json.dump(arr, f, indent=2)
             f.write('\n')     
