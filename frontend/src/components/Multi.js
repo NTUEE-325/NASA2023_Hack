@@ -18,7 +18,7 @@ import {
   clarinet_note,
   contrabass_note,
 } from "../constant/melody";
-// import img1_1111 from "./../assets/blendPictures/1-1.jpg";
+import img from "./../assets/image1/1_0100.jpg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
@@ -35,6 +35,7 @@ const Multi = () => {
   ];
 
   const [page, setPage] = useState(0);
+  const [imgUrl, setImgUrl] = useState(img);
   const [items, setItems] = useState([
     { name: "channel1", checked: true },
     { name: "channel2", checked: false },
@@ -122,7 +123,7 @@ const Multi = () => {
   }, 0.1);
 
   const handleChange = (index) => {
-    // console.log(items.filter((item) => item.checked === true));
+    console.log(items.filter((item) => item.checked === true));
     let temp = items.slice();
     temp[index].checked = !items[index].checked;
     setItems(temp);
@@ -280,7 +281,7 @@ const Multi = () => {
             backgroundColor: "rgba(0,0,0,0.1)",
           }}
         ></canvas>
-        <img src={img1_1111} ref={imageRef} style={{ display: "none" }} />
+        <img src={imgUrl} ref={imageRef} style={{ display: "none" }} />
       </Grid>
     </Grid>
   );
