@@ -18,7 +18,57 @@ import {
   clarinet_note,
   contrabass_note,
 } from "../constant/melody";
-import img from "./../assets/image1/1_0100.jpg";
+
+/* File generated automatically by python. */
+import pic_1_0000 from "./../assets/image1/1_0000.jpg";
+import pic_1_0001 from "./../assets/image1/1_0001.jpg";
+import pic_1_0010 from "./../assets/image1/1_0010.jpg";
+import pic_1_0011 from "./../assets/image1/1_0011.jpg";
+import pic_1_0100 from "./../assets/image1/1_0100.jpg";
+import pic_1_0101 from "./../assets/image1/1_0101.jpg";
+import pic_1_0110 from "./../assets/image1/1_0110.jpg";
+import pic_1_0111 from "./../assets/image1/1_0111.jpg";
+import pic_1_1000 from "./../assets/image1/1_1000.jpg";
+import pic_1_1001 from "./../assets/image1/1_1001.jpg";
+import pic_1_1010 from "./../assets/image1/1_1010.jpg";
+import pic_1_1011 from "./../assets/image1/1_1011.jpg";
+import pic_1_1100 from "./../assets/image1/1_1100.jpg";
+import pic_1_1101 from "./../assets/image1/1_1101.jpg";
+import pic_1_1110 from "./../assets/image1/1_1110.jpg";
+import pic_1_1111 from "./../assets/image1/1_1111.jpg";
+import pic_5_0000 from "./../assets/image5/5_0000.jpg";
+import pic_5_0001 from "./../assets/image5/5_0001.jpg";
+import pic_5_0010 from "./../assets/image5/5_0010.jpg";
+import pic_5_0011 from "./../assets/image5/5_0011.jpg";
+import pic_5_0100 from "./../assets/image5/5_0100.jpg";
+import pic_5_0101 from "./../assets/image5/5_0101.jpg";
+import pic_5_0110 from "./../assets/image5/5_0110.jpg";
+import pic_5_0111 from "./../assets/image5/5_0111.jpg";
+import pic_5_1000 from "./../assets/image5/5_1000.jpg";
+import pic_5_1001 from "./../assets/image5/5_1001.jpg";
+import pic_5_1010 from "./../assets/image5/5_1010.jpg";
+import pic_5_1011 from "./../assets/image5/5_1011.jpg";
+import pic_5_1100 from "./../assets/image5/5_1100.jpg";
+import pic_5_1101 from "./../assets/image5/5_1101.jpg";
+import pic_5_1110 from "./../assets/image5/5_1110.jpg";
+import pic_5_1111 from "./../assets/image5/5_1111.jpg";
+import pic_6_0000 from "./../assets/image6/6_0000.jpg";
+import pic_6_0001 from "./../assets/image6/6_0001.jpg";
+import pic_6_0010 from "./../assets/image6/6_0010.jpg";
+import pic_6_0011 from "./../assets/image6/6_0011.jpg";
+import pic_6_0100 from "./../assets/image6/6_0100.jpg";
+import pic_6_0101 from "./../assets/image6/6_0101.jpg";
+import pic_6_0110 from "./../assets/image6/6_0110.jpg";
+import pic_6_0111 from "./../assets/image6/6_0111.jpg";
+import pic_6_1000 from "./../assets/image6/6_1000.jpg";
+import pic_6_1001 from "./../assets/image6/6_1001.jpg";
+import pic_6_1010 from "./../assets/image6/6_1010.jpg";
+import pic_6_1011 from "./../assets/image6/6_1011.jpg";
+import pic_6_1100 from "./../assets/image6/6_1100.jpg";
+import pic_6_1101 from "./../assets/image6/6_1101.jpg";
+import pic_6_1110 from "./../assets/image6/6_1110.jpg";
+import pic_6_1111 from "./../assets/image6/6_1111.jpg";
+
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
@@ -26,6 +76,7 @@ let prevMs = -1;
 
 const Multi = () => {
   const img_names = ["NGC13", "NGC100", "NGC30"];
+  const arr = [1, 5, 6];
   const description = [
     "NGC 13 is a spiral galaxy in the constellation Andromeda. It is estimated \
     to be about 220 million light-years (66 Megaparsecs) away from the Sun.\
@@ -37,12 +88,11 @@ const Multi = () => {
   ];
 
   const [page, setPage] = useState(0);
-  const [imgUrl, setImgUrl] = useState(img);
   const [items, setItems] = useState([
-    { name: "channel1", checked: true },
-    { name: "channel2", checked: false },
-    { name: "channel3", checked: false },
-    { name: "channel4", checked: false },
+    { name: "wavelength: 3.4um", checked: true },
+    { name: "wavelength: 4.6um", checked: false },
+    { name: "wavelength: 12um", checked: false },
+    { name: "wavelength: 22um", checked: false },
   ]);
 
   const canvasRef = useRef(null);
@@ -125,10 +175,159 @@ const Multi = () => {
   }, 0.1);
 
   const handleChange = (index) => {
-    console.log(items.filter((item) => item.checked === true));
     let temp = items.slice();
     temp[index].checked = !items[index].checked;
+    let result = temp.map((a) => a.checked);
     setItems(temp);
+    //change imgUrl
+    let canvas = canvasRef.current;
+    // switch (result) {
+    //   case [false, false, false, false]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_0000);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_0000);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_0000);
+    //     }
+    //   case [false, false, false, true]:
+    //     switch (page) {
+    //       case 0:
+    //         console.log(result);
+    //         canvas.setAttribute("src", pic_1_0001);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_0001);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_0001);
+    //     }
+    //   case [false, false, true, false]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_0010);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_0010);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_0010);
+    //     }
+    //   case [false, false, true, true]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_0011);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_0011);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_0011);
+    //     }
+    //   case [false, true, false, false]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_0100);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_0100);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_0100);
+    //     }
+    //   case [false, true, false, true]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_0101);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_0101);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_0101);
+    //     }
+    //   case [false, true, true, false]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_0110);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_0110);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_0110);
+    //     }
+    //   case [false, true, true, true]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_0111);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_0111);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_0111);
+    //     }
+    //   case [true, false, false, false]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_1000);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_1000);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_1000);
+    //     }
+    //   case [true, false, false, true]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_1001);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_1001);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_1001);
+    //     }
+    //   case [true, false, true, false]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_1010);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_1010);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_1010);
+    //     }
+    //   case [true, false, true, true]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_1011);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_1011);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_1011);
+    //     }
+    //   case [true, true, false, false]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_1100);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_1100);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_1100);
+    //     }
+    //   case [true, true, false, true]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_1101);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_1101);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_1101);
+    //     }
+    //   case [true, true, true, false]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_1110);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_1110);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_1110);
+    //     }
+    //   case [true, true, true, true]:
+    //     switch (page) {
+    //       case 0:
+    //         canvas.setAttribute("src", pic_1_1111);
+    //       case 1:
+    //         canvas.setAttribute("src", pic_5_1111);
+    //       case 2:
+    //         canvas.setAttribute("src", pic_6_1111);
+    //     }
+    // }
   };
 
   const playTest = () => {
@@ -283,7 +482,7 @@ const Multi = () => {
             backgroundColor: "rgba(0,0,0,0.1)",
           }}
         ></canvas>
-        <img src={imgUrl} ref={imageRef} style={{ display: "none" }} />
+        <img src={pic_1_1000} ref={imageRef} style={{ display: "none" }} />
       </Grid>
     </Grid>
   );
