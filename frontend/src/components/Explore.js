@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useContext, useState } from "react";
 import InstrumentContext from "./useInstruments";
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import test_video from "./../assets/04_01.mp4";
 import * as Tone from "tone";
 import { piano_mapping, bassoon_mapping, clarinet_mapping, contrabass_mapping } from "../constant/pitch";
-import { directions } from "../constant/direction"
+import { directions } from "../constant/directions"
 
 let prevMs = -1;
 
@@ -12,7 +12,7 @@ let prevSoundMs = 0;
 let nextSoundMs;
 let soundCounter = 0;
 
-const f = 156;
+const f = 210;
 let fc = 0;
 
 const rotate_coefficient = 0.08;

@@ -1,4 +1,4 @@
-export const piano_note = [
+export const directions = [
     {
         "x": 0.2889508306980133,
         "y": 0.38999244570732117,
