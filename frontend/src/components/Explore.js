@@ -113,7 +113,7 @@ const Explore = () => {
 
         if (selected.length > 0) {
           nextSoundMs = Date.now();
-          if (prevSoundMs == 0 || nextSoundMs - prevSoundMs > (7/29) * 1000){
+          if (prevSoundMs == 0 || nextSoundMs - prevSoundMs >= (7/30) * 1000){
             prevSoundMs = nextSoundMs;
 
             let direction = directions[soundCounter];
@@ -164,7 +164,7 @@ const Explore = () => {
   
                 color2instrument[color].triggerAttackRelease(
                   [color2pitch[color][pitch]],
-                  7/29,
+                  7/30,
                   Tone.now(),
                   velocity
                 )

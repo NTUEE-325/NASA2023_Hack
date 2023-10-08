@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import * as Tone from "tone";
-// import useInstruments from "./useInstruments";
 import InstrumentContext from "./useInstruments";
 import {
   piano_note_1,
@@ -89,7 +88,6 @@ let prevMs = -1;
 
 const Multi = () => {
   const img_names = ["NGC13", "NGC100", "NGC30"];
-  const arr = [1, 5, 6];
   const description = [
     "NGC 13 is a spiral galaxy in the constellation Andromeda. It is estimated \
     to be about 220 million light-years (66 Megaparsecs) away from the Sun.\
@@ -112,13 +110,6 @@ const Multi = () => {
   const canvasRef = useRef(null);
   const imageRef = useRef(null);
 
-  // const playNote = (instrument, note, duration, elapsed, now) => {
-  //   // note in sharp should be G#4, flat should be in Gb3
-  //   instrument.triggerAttack([note], now + elapsed);
-  //   instrument.triggerRelease([note], now + elapsed + duration);
-  // };
-
-  // console.log(piano_note);
   const incrPage = () => {
     let temp = page;
     if (page < img_names.length - 1) {
@@ -136,60 +127,11 @@ const Multi = () => {
   };
 
   const tmp_note = [{ pitch: "F4", duration: 1, timing: 0.5, velocity: 1 }];
-  // const { piano, bassoon, clarinet, contrabass } = useInstruments();
-  const { piano, bassoon, clarinet, contrabass } =
-    useContext(InstrumentContext);
+  const { piano, bassoon, clarinet, contrabass } = useContext(InstrumentContext);
 
   let count_x = 0;
   let reqID = null;
 
-  // Tone.Transport.scheduleRepeat((time) => {
-  //   piano_note.forEach((n) => {
-  //     piano.triggerAttackRelease(
-  //       [n.pitch],
-  //       n.duration,
-  //       n.timing + time,
-  //       n.velocity
-  //     );
-  //     // console.log(n);
-  //   });
-  // }, 10);
-
-  // Tone.Transport.scheduleRepeat((time) => {
-  //   basson_note.forEach((n) => {
-  //     bassoon.triggerAttackRelease(
-  //       [n.pitch],
-  //       n.duration,
-  //       n.timing + time,
-  //       n.velocity
-  //     );
-  //     // console.log(n);
-  //   });
-  // }, 10);
-
-  // Tone.Transport.scheduleRepeat((time) => {
-  //   clarinet_note.forEach((n) => {
-  //     clarinet.triggerAttackRelease(
-  //       [n.pitch],
-  //       n.duration,
-  //       n.timing + time,
-  //       n.velocity
-  //     );
-  //     // console.log(n);
-  //   });
-  // }, 10);
-
-  // Tone.Transport.scheduleRepeat((time) => {
-  //   contrabass_note.forEach((n) => {
-  //     contrabass.triggerAttackRelease(
-  //       [n.pitch],
-  //       n.duration,
-  //       n.timing + time,
-  //       n.velocity
-  //     );
-  //     // console.log(n);
-  //   });
-  // }, 10);
 
   const handleChange = (index) => {
     let temp = items.slice();
@@ -234,7 +176,6 @@ const Multi = () => {
             n.timing + time,
             n.velocity
           );
-          // console.log(n);
         });
       });
     }
