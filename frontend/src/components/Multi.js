@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import * as Tone from "tone";
 import useInstruments from "./useInstruments";
+import { piano_note, basson_note, clarinet_note, contrabass_note } from "../constant/melody";
 
 const Multi = () => {
   const { piano, bassoon, clarinet, contrabass } = useInstruments();
@@ -26,16 +27,59 @@ const Multi = () => {
   //   instrument.triggerRelease([note], now + elapsed + duration);
   // };
 
-  // Tone.Transport.scheduleOnce((time) => {
-  //   pianoNotes.forEach((n) => {
-  //     piano.triggerAttackRelease(
-  //       [n.pitch],
-  //       n.duration,
-  //       n.timing + time,
-  //       n.velocity
-  //     );
-  //   });
-  // }, 4);
+  console.log(piano_note)
+  
+  const tmp_note = [{"pitch":"F4", "duration":1, "timing":0.5, "velocity":1}]
+
+  Tone.Transport.scheduleOnce((time) => {
+    piano_note.forEach((n) => {
+      piano.triggerAttackRelease(
+        [n.pitch],
+        n.duration,
+        n.timing + time,
+        n.velocity
+      );
+      console.log(n)
+    });
+  }, 0.1);
+
+  Tone.Transport.scheduleOnce((time) => {
+    basson_note.forEach((n) => {
+      bassoon.triggerAttackRelease(
+        [n.pitch],
+        n.duration,
+        n.timing + time,
+        n.velocity
+      );
+      console.log(n)
+    });
+  }, 0.1);
+
+  Tone.Transport.scheduleOnce((time) => {
+    clarinet_note.forEach((n) => {
+      clarinet.triggerAttackRelease(
+        [n.pitch],
+        n.duration,
+        n.timing + time,
+        n.velocity
+      );
+      console.log(n)
+    });
+  }, 0.1);
+
+  Tone.Transport.scheduleOnce((time) => {
+    contrabass_note.forEach((n) => {
+      contrabass.triggerAttackRelease(
+        [n.pitch],
+        n.duration,
+        n.timing + time,
+        n.velocity
+      );
+      console.log(n)
+    });
+  }, 0.1);
+
+
 
   const handleChange = (index) => {
     // console.log(items.filter((item) => item.checked === true));
@@ -46,9 +90,11 @@ const Multi = () => {
 
   const playTest = () => {
     // polyphonic sampler allows multi sound?
-    // const now = Tone.now();
+    const now = Tone.now();
     // playNote(piano, "B3", 0.25, 0, now);
-    // Tone.Transport;
+    
+    Tone.start();
+    Tone.Transport.start();
   };
 
   return (
