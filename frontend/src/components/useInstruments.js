@@ -1,43 +1,45 @@
 import * as Tone from "tone";
-import {
-  bassoon_urls,
-  clarinet_urls,
-  contrabass_urls,
-  piano_urls,
-} from "./instruments";
+import { createContext } from "react";
 
-const useInstruments = () => {
-  const piano = new Tone.Sampler({
-    urls: piano_urls,
-    onload: () => {
-      console.log("Finish loading piano!");
-    },
-  }).toDestination();
-  const bassoon = new Tone.Sampler({
-    urls: bassoon_urls,
-    onload: () => {
-      console.log("Finish loading bassoon!");
-    },
-  }).toDestination();
-  const clarinet = new Tone.Sampler({
-    urls: clarinet_urls,
-    onload: () => {
-      console.log("Finish loading clarinet!");
-    },
-  }).toDestination();
+// const useInstruments = () => {
+//   const piano = new Tone.Sampler({
+//     urls: piano_urls,
+//     onload: () => {
+//       console.log("Finish loading piano!");
+//     },
+//   }).toDestination();
+//   const bassoon = new Tone.Sampler({
+//     urls: bassoon_urls,
+//     onload: () => {
+//       console.log("Finish loading bassoon!");
+//     },
+//   }).toDestination();
+//   const clarinet = new Tone.Sampler({
+//     urls: clarinet_urls,
+//     onload: () => {
+//       console.log("Finish loading clarinet!");
+//     },
+//   }).toDestination();
 
-  const contrabass = new Tone.Sampler({
-    urls: contrabass_urls,
-    onload: () => {
-      console.log("Finish loading contrabass!");
-    },
-  }).toDestination();
+//   const contrabass = new Tone.Sampler({
+//     urls: contrabass_urls,
+//     onload: () => {
+//       console.log("Finish loading contrabass!");
+//     },
+//   }).toDestination();
 
-  const init_Inst = () => {
-    Tone.loaded();
-  };
+//   const init_Inst = () => {
+//     Tone.loaded();
+//   };
 
-  return { piano, bassoon, clarinet, contrabass, init_Inst };
-};
+//   return { piano, bassoon, clarinet, contrabass, init_Inst };
+// };
 
-export default useInstruments;
+const InstrumentContext = createContext({
+  piano: Tone.Sampler,
+  bassoon: Tone.Sampler,
+  clarinet: Tone.Sampler,
+  contrabass: Tone.Sampler,
+});
+// export default useInstruments;
+export default InstrumentContext;

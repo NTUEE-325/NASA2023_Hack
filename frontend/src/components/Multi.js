@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import {
   Grid,
   FormGroup,
@@ -11,7 +11,8 @@ import {
   Typography,
 } from "@mui/material";
 import * as Tone from "tone";
-import useInstruments from "./useInstruments";
+// import useInstruments from "./useInstruments";
+import InstrumentContext from "./useInstruments";
 import {
   piano_note,
   basson_note,
@@ -122,9 +123,12 @@ const Multi = () => {
   };
 
   const tmp_note = [{ pitch: "F4", duration: 1, timing: 0.5, velocity: 1 }];
-  const { piano, bassoon, clarinet, contrabass } = useInstruments();
+  // const { piano, bassoon, clarinet, contrabass } = useInstruments();
+  const { piano, bassoon, clarinet, contrabass } =
+    useContext(InstrumentContext);
 
   let count_x = 0;
+  let reqID = null;
 
   Tone.Transport.scheduleOnce((time) => {
     piano_note.forEach((n) => {
@@ -360,13 +364,21 @@ const Multi = () => {
         drawLine(ctx, 0, canvas.height, count_x);
         prevMs = nowMs;
         if (count_x === 300) {
-          cancelAnimationFrame(animate);
+          reqID = cancelAnimationFrame(animate);
         } else {
-          requestAnimationFrame(animate);
+          reqID = requestAnimationFrame(animate);
         }
       }
     }, 30);
   };
+
+  useEffect(() => {
+    return () => {
+      if (reqID != null) {
+        window.cancelAnimationFrame(reqID);
+      }
+    };
+  }, []);
 
   return (
     <Grid

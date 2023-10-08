@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-
+import React, { useRef, useEffect, useContext } from "react";
+import InstrumentContext from "./useInstruments";
 import test_video from "./../assets/01.mp4";
 
 let prevMs = -1;
@@ -7,7 +7,8 @@ let prevMs = -1;
 const Explore = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-
+  const { piano, bassoon, clarinet, contrabass } =
+    useContext(InstrumentContext);
   let reqID = null;
 
   const capture = () => {
