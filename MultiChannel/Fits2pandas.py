@@ -6,7 +6,7 @@ import json
 from astropy.table import Table
 from astropy.io import fits
 
-data_bands_name = 'MultiChannel/image5/w4.fits'
+data_bands_name = 'MultiChannel/image6/w4.fits'
 
 fits.info(data_bands_name)
 
@@ -43,6 +43,6 @@ plt.margins(0,0)
 plt.gca().xaxis.set_major_locator(plt.NullLocator())
 plt.gca().yaxis.set_major_locator(plt.NullLocator())
 
-plt.savefig('MultiChannel/blendPicturesNew/5_0001.jpg', bbox_inches = 'tight', pad_inches=0)
+plt.savefig('MultiChannel/blendPicturesNew/6_0001.jpg', bbox_inches = 'tight', pad_inches=0)
 
 plt.show()
