@@ -17,31 +17,55 @@ import {
 import * as Tone from "tone";
 
 const App = () => {
+  const panner1 = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : 0,
+    positionY : 0,
+    positionZ : 2,
+  }).toDestination();
+  const panner2 = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : 0,
+    positionY : 0,
+    positionZ : 2,
+  }).toDestination();
+  const panner3 = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : -2,
+    positionY : 0,
+    positionZ : 2,
+  }).toDestination();
+  const panner4 = new Tone.Panner3D({
+    panningModel: "HRTF",
+    positionX : -2,
+    positionY : 0,
+    positionZ : -2,
+  }).toDestination();
+
   const piano = new Tone.Sampler({
     urls: piano_urls,
     onload: () => {
       console.log("Finish loading piano!");
     },
-  }).toDestination();
+  }).connect(panner1);
   const bassoon = new Tone.Sampler({
     urls: bassoon_urls,
     onload: () => {
       console.log("Finish loading bassoon!");
     },
-  }).toDestination();
+  }).connect(panner2);
   const clarinet = new Tone.Sampler({
     urls: clarinet_urls,
     onload: () => {
       console.log("Finish loading clarinet!");
     },
-  }).toDestination();
-
+  }).connect(panner3);
   const contrabass = new Tone.Sampler({
     urls: contrabass_urls,
     onload: () => {
       console.log("Finish loading contrabass!");
     },
-  }).toDestination();
+  }).connect(panner4);
 
   const value = { piano, bassoon, clarinet, contrabass };
   return (

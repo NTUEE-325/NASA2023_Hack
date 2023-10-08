@@ -1,12 +1,11 @@
-
 import React, { useRef, useEffect, useContext } from "react";
 import InstrumentContext from "./useInstruments";
 import test_video from "./../assets/01.mp4";
 import * as Tone from "tone";
 import { piano_mapping, bassoon_mapping, clarinet_mapping, contrabass_mapping } from "../constant/pitch";
+import directions from "../constant/direction"
 
 let prevMs = -1;
-let random_duration = 0;
 
 let prevSoundMs = 0;
 let nextSoundMs;
@@ -18,6 +17,9 @@ const Explore = () => {
     useContext(InstrumentContext);
   let reqID = null;
   let random_duration = 0;
+
+  Tone.Listener.forwardX.value = Math.sin(1.23);
+  Tone.Listener.forwardZ.value = -Math.cos(1.23);
 
   const capture = () => {
     const nowMs = Date.now();
@@ -124,7 +126,7 @@ const Explore = () => {
 
         if (selected.length > 0) {
           nextSoundMs = Date.now();
-          if (prevSoundMs == 0 || nextSoundMs - prevSoundMs > 10/29){
+          if (prevSoundMs == 0 || nextSoundMs - prevSoundMs > 7/29){
             prevSoundMs = nextSoundMs;
             random_duration = (Math.random() / 2) + 0.5;
 
@@ -150,7 +152,7 @@ const Explore = () => {
             const color2pitch = {"r": piano_mapping, "g": bassoon_mapping, "b": clarinet_mapping};
             const max_brightness = 250;
 
-            for (let i = 0; i < selected.length; i++) {
+            for (let i = 0; i < Math.min(2, selected.length); i++) {
               /* ---------------------------------------------------------- */
               /* ---------------------- R : piano ------------------------- */
               /* ---------------------------------------------------------- */
@@ -175,7 +177,7 @@ const Explore = () => {
   
                 color2instrument[color].triggerAttackRelease(
                   [color2pitch[color][pitch]],
-                  10/29,
+                  7/29,
                   Tone.now(),
                   velocity
                 )
