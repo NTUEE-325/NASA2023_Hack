@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useContext } from "react";
 import InstrumentContext from "./useInstruments";
 import test_video from "./../assets/01.mp4";
 import * as Tone from "tone";
-import { piano_mapping, bassoon_mapping, clarinet_mapping } from "../constant/pitch";
+import { piano_mapping, bassoon_mapping, clarinet_mapping, contrabass_mapping } from "../constant/pitch";
 
 let prevMs = -1;
 let random_duration = 0;
@@ -108,14 +108,9 @@ const Explore = () => {
               }
             }
 
-            // r = frame.data[4 * (row_base * radius + col_base) + 0];
-            // g = frame.data[4 * (row_base * radius + col_base) + 1];
-            // b = frame.data[4 * (row_base * radius + col_base) + 2];
-            // a = frame.data[4 * (row_base * radius + col_base) + 3];
-
             let bright = (r + g + b);
 
-            if (bright > 50) {
+            if (bright > 90) {
               if (selected.find(e => Math.abs(e.col_base - col_base) < 10 && Math.abs(e.row_base - row_base) < 10)){
                 continue;
               } else {
@@ -127,7 +122,7 @@ const Explore = () => {
 
         if (selected.length > 0) {
           nextSoundMs = Date.now();
-          if (prevSoundMs == 0 || nextSoundMs - prevSoundMs > 1000){
+          if (prevSoundMs == 0 || nextSoundMs - prevSoundMs > 10/29){
             prevSoundMs = nextSoundMs;
             random_duration = (Math.random() / 2) + 0.5;
 
@@ -149,15 +144,15 @@ const Explore = () => {
             // 360 -> (pitch).length
             //
             const colors = ["r", "g", "b"];
-            const color2instrument = {"r": piano, "g": bassoon, "b": clarinet};
-            const color2pitch = {"r": piano_mapping, "g": bassoon_mapping, "b": clarinet_mapping};
+            const color2instrument = {"r": piano, "g": bassoon, "b": contrabass};
+            const color2pitch = {"r": piano_mapping, "g": bassoon_mapping, "b": contrabass_mapping};
             const max_brightness = 250;
 
-            for (let i = 0; i < selected.length; i++) {
+            for (let i = 0; i < Math.min(2, selected.length); i++) {
               /* ---------------------------------------------------------- */
               /* ---------------------- R : piano ------------------------- */
               /* ---------------------------------------------------------- */
-              for (let j = 0; j < 3; j++) {
+              for (let j = 0; j < 1; j++) {
                 let color = colors[j];
   
                 let pitch_numbers = color2pitch[color].length;
@@ -171,14 +166,14 @@ const Explore = () => {
   
                 let brightness = selected[i].r + selected[i].g + selected[i].b;
                 if (brightness > max_brightness) brightness = max_brightness;
-                let velocity = (brightness / max_brightness) - 0.5;
+                let velocity = (brightness / max_brightness) - 0.8;
                 
                 console.log (pitch, y, x, theta, angle_interval);
                 console.log (pitch_numbers);
   
                 color2instrument[color].triggerAttackRelease(
                   [color2pitch[color][pitch]],
-                  1,
+                  10/29,
                   Tone.now(),
                   velocity
                 )
