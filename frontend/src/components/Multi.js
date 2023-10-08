@@ -181,157 +181,7 @@ const Multi = () => {
   const handleChange = (index) => {
     let temp = items.slice();
     temp[index].checked = !items[index].checked;
-    let result = temp.map((a) => a.checked);
     setItems(temp);
-    //change imgUrl
-    let canvas = canvasRef.current;
-    // switch (result) {
-    //   case [false, false, false, false]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_0000);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_0000);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_0000);
-    //     }
-    //   case [false, false, false, true]:
-    //     switch (page) {
-    //       case 0:
-    //         console.log(result);
-    //         canvas.setAttribute("src", pic_1_0001);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_0001);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_0001);
-    //     }
-    //   case [false, false, true, false]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_0010);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_0010);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_0010);
-    //     }
-    //   case [false, false, true, true]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_0011);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_0011);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_0011);
-    //     }
-    //   case [false, true, false, false]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_0100);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_0100);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_0100);
-    //     }
-    //   case [false, true, false, true]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_0101);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_0101);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_0101);
-    //     }
-    //   case [false, true, true, false]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_0110);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_0110);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_0110);
-    //     }
-    //   case [false, true, true, true]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_0111);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_0111);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_0111);
-    //     }
-    //   case [true, false, false, false]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_1000);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_1000);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_1000);
-    //     }
-    //   case [true, false, false, true]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_1001);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_1001);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_1001);
-    //     }
-    //   case [true, false, true, false]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_1010);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_1010);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_1010);
-    //     }
-    //   case [true, false, true, true]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_1011);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_1011);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_1011);
-    //     }
-    //   case [true, true, false, false]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_1100);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_1100);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_1100);
-    //     }
-    //   case [true, true, false, true]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_1101);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_1101);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_1101);
-    //     }
-    //   case [true, true, true, false]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_1110);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_1110);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_1110);
-    //     }
-    //   case [true, true, true, true]:
-    //     switch (page) {
-    //       case 0:
-    //         canvas.setAttribute("src", pic_1_1111);
-    //       case 1:
-    //         canvas.setAttribute("src", pic_5_1111);
-    //       case 2:
-    //         canvas.setAttribute("src", pic_6_1111);
-    //     }
-    // }
   };
 
   const playTest = () => {
@@ -371,6 +221,160 @@ const Multi = () => {
       }
     }, 30);
   };
+
+  useEffect(() => {
+    //change imgUrl
+    let result = items.map((a) => a.checked);
+    let canvas = canvasRef.current;
+    console.log(result, page);
+    switch (result) {
+      case [false, false, false, false]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_0000);
+          case 1:
+            canvas.setAttribute("src", pic_5_0000);
+          case 2:
+            canvas.setAttribute("src", pic_6_0000);
+        }
+      case [false, false, false, true]:
+        console.log(result);
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_0001);
+          case 1:
+            canvas.setAttribute("src", pic_5_0001);
+          case 2:
+            canvas.setAttribute("src", pic_6_0001);
+        }
+      case [false, false, true, false]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_0010);
+          case 1:
+            canvas.setAttribute("src", pic_5_0010);
+          case 2:
+            canvas.setAttribute("src", pic_6_0010);
+        }
+      case [false, false, true, true]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_0011);
+          case 1:
+            canvas.setAttribute("src", pic_5_0011);
+          case 2:
+            canvas.setAttribute("src", pic_6_0011);
+        }
+      case [false, true, false, false]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_0100);
+          case 1:
+            canvas.setAttribute("src", pic_5_0100);
+          case 2:
+            canvas.setAttribute("src", pic_6_0100);
+        }
+      case [false, true, false, true]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_0101);
+          case 1:
+            canvas.setAttribute("src", pic_5_0101);
+          case 2:
+            canvas.setAttribute("src", pic_6_0101);
+        }
+      case [false, true, true, false]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_0110);
+          case 1:
+            canvas.setAttribute("src", pic_5_0110);
+          case 2:
+            canvas.setAttribute("src", pic_6_0110);
+        }
+      case [false, true, true, true]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_0111);
+          case 1:
+            canvas.setAttribute("src", pic_5_0111);
+          case 2:
+            canvas.setAttribute("src", pic_6_0111);
+        }
+      case [true, false, false, false]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_1000);
+          case 1:
+            canvas.setAttribute("src", pic_5_1000);
+          case 2:
+            canvas.setAttribute("src", pic_6_1000);
+        }
+      case [true, false, false, true]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_1001);
+          case 1:
+            canvas.setAttribute("src", pic_5_1001);
+          case 2:
+            canvas.setAttribute("src", pic_6_1001);
+        }
+      case [true, false, true, false]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_1010);
+          case 1:
+            canvas.setAttribute("src", pic_5_1010);
+          case 2:
+            canvas.setAttribute("src", pic_6_1010);
+        }
+      case [true, false, true, true]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_1011);
+          case 1:
+            canvas.setAttribute("src", pic_5_1011);
+          case 2:
+            canvas.setAttribute("src", pic_6_1011);
+        }
+      case [true, true, false, false]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_1100);
+          case 1:
+            canvas.setAttribute("src", pic_5_1100);
+          case 2:
+            canvas.setAttribute("src", pic_6_1100);
+        }
+      case [true, true, false, true]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_1101);
+          case 1:
+            canvas.setAttribute("src", pic_5_1101);
+          case 2:
+            canvas.setAttribute("src", pic_6_1101);
+        }
+      case [true, true, true, false]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_1110);
+          case 1:
+            canvas.setAttribute("src", pic_5_1110);
+          case 2:
+            canvas.setAttribute("src", pic_6_1110);
+        }
+      case [true, true, true, true]:
+        switch (page) {
+          case 0:
+            canvas.setAttribute("src", pic_1_1111);
+          case 1:
+            canvas.setAttribute("src", pic_5_1111);
+          case 2:
+            canvas.setAttribute("src", pic_6_1111);
+        }
+    }
+  }, [items, page]);
 
   useEffect(() => {
     return () => {
