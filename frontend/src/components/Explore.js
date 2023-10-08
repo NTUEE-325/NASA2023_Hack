@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useContext } from "react";
 import InstrumentContext from "./useInstruments";
+import { Button } from "@mui/material";
 import test_video from "./../assets/01.mp4";
 
 let prevMs = -1;
@@ -67,7 +68,6 @@ const Explore = () => {
   };
 
   useEffect(() => {
-    capture();
     return () => {
       if (reqID != null) {
         window.cancelAnimationFrame(reqID);
@@ -101,6 +101,21 @@ const Explore = () => {
       >
         <source src={test_video} />
       </video>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          capture();
+        }}
+        sx={{
+          position: "absolute",
+          marginTop: "80vh",
+          width: "20vw",
+          left: "40vw",
+          right: "40vw",
+        }}
+      >
+        Start Sonification!
+      </Button>
     </div>
   );
 };
