@@ -1,5 +1,21 @@
 # NASA2023_Hack
 
+## Run locally
+
+- install NVM, npm
+- install nodejs (we try 20.4.0, 14.7.0)
+ 
+```bash
+cd frontend
+npm install
+npm run start
+```
+
+## Multi-channel Image Processing
+
+- put your downloaded .fits file from (https://irsa.ipac.caltech.edu/applications/wise/?__action=layout.showDropDown&) as the format in MultiChannel
+
+
 ## Summary
 We provided an open-source web application to revolutionize the way users interact with various forms of 3D data, such as fly-through videos and multi-channel images. In the case of video, we calculated the viewer's trajectory and enhances the audio experience accordingly. For multi-channel image, we ensembled features from different channels and allows the audience to choose their preferred channel for auditory exploration. Our results not only showcase the effectiveness of these techniques but also open up new possibilities for immersive, personalized auditory experiences.
 
