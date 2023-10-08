@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Typography, Box, Tabs, Tab } from "@mui/material";
+import { Tabs, Tab } from "@mui/material";
 import "./App.css";
 
 const Header = () => {
@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleClick = (event, newValue) => {
-    console.log(newValue);
+    // console.log(newValue);
     setValue(newValue);
     if (newValue === "0") {
       navigate("/");

@@ -11,7 +11,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "Roboto Condensed",
-    fontSize: 28,
+    fontSize: 26,
   },
 });
 export default theme;
