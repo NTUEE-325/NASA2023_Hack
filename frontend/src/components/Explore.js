@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useContext, useState } from "react";
 import InstrumentContext from "./useInstruments";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import test_video from "./../assets/04_01.mp4";
 import * as Tone from "tone";
 import { piano_mapping, bassoon_mapping, clarinet_mapping, contrabass_mapping } from "../constant/pitch";
